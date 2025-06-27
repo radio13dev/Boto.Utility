@@ -17,11 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Seeing if tests work on GitHub now
+- Fixed asmdef for tests to use optionalUnityReferences:TestAssemblies
 
 ### Removed
 
-- 
+- Disabled workflows
 
 ## [1.0.1] - 2025-06-25
 
