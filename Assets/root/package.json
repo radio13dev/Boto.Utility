@@ -1,5 +1,5 @@
 {
-    "name": "com.github.radio13dev.Boto.Utility",
+    "name": "com.boto.utility",
     "displayName": "Boto.Utility",
     "author": {
         "name": "radio13dev",
@@ -11,7 +11,11 @@
     "version": "1.0.1",
     "unity": "6000.0",
     "description": "Some description",
-    "dependencies": {},
+    "dependencies": {
+		"com.unity.inputsystem": "1.14.0",
+		"com.unity.mathematics": "1.3.0",
+		"ayellowpaper.serialized-dictionary": "1.0.0",
+	},
 	"samples": [
 		{
 			"displayName": "Sample Folder 1",

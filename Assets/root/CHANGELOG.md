@@ -9,15 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- 
+- Added all missing dependencies
 
 ### Changed
 
-- 
+- Package name now 'com.boto.utility'
 
 ### Fixed
 
 - Fixed asmdef for tests to use optionalUnityReferences:TestAssemblies
+- Fixed compile errors
 
 ### Removed
 
