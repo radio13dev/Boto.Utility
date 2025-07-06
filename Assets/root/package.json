@@ -8,13 +8,12 @@
     "keywords": [
         "Utility"
     ],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "unity": "6000.0",
     "description": "Some description",
     "dependencies": {
 		"com.unity.inputsystem": "1.14.0",
-		"com.unity.mathematics": "1.3.0",
-		"ayellowpaper.serialized-dictionary": "1.0.0",
+		"com.unity.mathematics": "1.3.0"
 	},
 	"samples": [
 		{

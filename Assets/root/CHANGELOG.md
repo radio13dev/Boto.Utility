@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- 
+
+### Changed
+
+- 
+
+### Fixed
+
+- 
+
+### Removed
+
+-  
+
+## [1.0.2] - 2025-07-06
+
+### Added
+
 - Added all missing dependencies
 
 ### Changed
@@ -37,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of Boto.Utility.
 
-[unreleased]: https://github.com/radio13dev/Boto.Utility/compare/v1.0.1...HEAD
+[unreleased]: https://github.com/radio13dev/Boto.Utility/compare/v1.0.2...HEAD
+[1.0.2]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.2
 [1.0.1]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.1
 [1.0.0]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.0
