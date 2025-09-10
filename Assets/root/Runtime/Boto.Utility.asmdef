@@ -4,7 +4,9 @@
     "references": [
         "Unity.Mathematics",
         "AYellowpaper.SerializedCollections",
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "Unity.Transforms",
+        "ALINE"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

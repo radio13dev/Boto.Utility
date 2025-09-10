@@ -80,4 +80,13 @@ public static class VectorUtilities
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
     public static float3 f3(this float2 vector) => new float3(vector, 0);
+    
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Pure]
+    public static float3 f3(this int2 vector) => new float3(vector, 0);
+    
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [Pure]
+    public static float3 f3z(this float2 vector) => new float3(vector.x, 0, vector.y);
 }
