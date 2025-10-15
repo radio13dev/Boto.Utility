@@ -7,27 +7,30 @@ public readonly struct curve : IEquatable<curve>
     {
         constant,
         exponential,
-        linear
+        linear,
+        linearFromZero,
     }
     
     public readonly mode Mode;
     public readonly float Zero;
+    public readonly float Scale;
 
-    private curve(mode mode, float zero)
+    private curve(mode mode, float zero, float scale)
     {
         Mode = mode;
         Zero = zero;
+        Scale = scale;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public float Evaluate(int step)
     {
-        if (step <= 0) return 0;
-        
         return Mode switch
         {
-            mode.exponential => Zero * (1 << (step-1)),
-            mode.linear => Zero * step,
+            mode.constant => Zero,
+            mode.exponential => Zero + step > 0 ? Scale * (1 << (step-1)) : 0,
+            mode.linear => Zero + Scale * step,
+            mode.linearFromZero => step > 0 ? Zero + Scale * step : 0,
             _ => 0
         };
     }
@@ -35,20 +38,24 @@ public readonly struct curve : IEquatable<curve>
     public static readonly curve zero = default;
     public static curve constant(float zero)
     {
-        return new curve(mode.constant, zero);
+        return new curve(mode.constant, zero, 0);
     }
-    public static curve exponential(float zero)
+    public static curve exponential(float scale)
     {
-        return new curve(mode.exponential, zero);
+        return new curve(mode.exponential, 0, scale);
     }
-    public static curve linear(float zero)
+    public static curve linear(float zero, float scale)
     {
-        return new curve(mode.linear, zero);
+        return new curve(mode.linear, zero, scale);
+    }
+    public static curve linearFromZero(float zero, float scale)
+    {
+        return new curve(mode.linearFromZero, zero, scale);
     }
 
     public bool Equals(curve other)
     {
-        return Mode == other.Mode && Zero.Equals(other.Zero);
+        return Mode == other.Mode && Zero.Equals(other.Zero) && Scale.Equals(other.Scale);
     }
 
     public override bool Equals(object obj)

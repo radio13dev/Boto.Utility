@@ -12,8 +12,10 @@
     "unity": "6000.0",
     "description": "Some description",
     "dependencies": {
+		"com.unity.mathematics": "1.3.0",
 		"com.unity.inputsystem": "1.14.0",
-		"com.unity.mathematics": "1.3.0"
+		"com.arongranberg.aline": "1.7.8",
+		"com.unity.entities": "1.4.0"
 	},
 	"samples": [
 		{

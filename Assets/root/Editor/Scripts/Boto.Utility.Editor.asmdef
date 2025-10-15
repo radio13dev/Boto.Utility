@@ -1,9 +1,13 @@
 {
     "name": "Boto.Utility.Editor",
+    "rootNamespace": "",
     "references": [
-        "Boto.Utility"
+        "Boto.Utility",
+        "Unity.EditorCoroutines.Editor"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

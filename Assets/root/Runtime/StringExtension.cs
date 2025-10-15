@@ -12,6 +12,14 @@ public static class StringExtension
     }
     public static string ToGemChangeString(this long value)
     {
-        return (value > 0 ? "+" : "-") + math.abs(value).ToString("N0");
+        return (value >= 0 ? "+" : "-") + math.abs(value).ToString("N0");
+    }
+    public static string ToValueChangeString(this int value)
+    {
+        return (value >= 0 ? "+" : "-") + math.abs(value).ToString("N0");
+    }
+    public static string ToValueChangeString(this long value)
+    {
+        return (value >= 0 ? "+" : "-") + math.abs(value).ToString("N0");
     }
 }
