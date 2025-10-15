@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added mathu
+-
 
 ### Changed
 
@@ -17,7 +17,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+-
+
+### Removed
+
+-  
+
+## [1.0.3] - 2025-10-16
+
+### Added
+
+- Added mathu
+- Added easing
+- String extensions
+- Curve
+- Debug Utility using Aline
+
+### Changed
+
 - 
+
+### Fixed
+
+- Package dependencies
 
 ### Removed
 
@@ -55,7 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Initial release of Boto.Utility.
 
-[unreleased]: https://github.com/radio13dev/Boto.Utility/compare/v1.0.2...HEAD
+[unreleased]: https://github.com/radio13dev/Boto.Utility/compare/v1.0.3...HEAD
+[1.0.3]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.3
 [1.0.2]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.2
 [1.0.1]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.1
 [1.0.0]: https://github.com/radio13dev/Boto.Utility/releases/tag/v1.0.0
