@@ -70,4 +70,17 @@ public static class mathu
     {
         return new Vector2Int((int)modabs(x.x,m.x), (int)modabs(x.y,m.y));
     }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float2 lerpangle(float2 a, float2 b, float t)
+    {
+        var num = repeat(b - a, 360f);
+        if (math.any(num > 180.0f))
+            num -= 360f;
+        return a + num * math.clamp(t,0,1);
+    }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float2 repeat(float2 t, float length)
+    {
+        return math.clamp(t - math.floor(t / length) * length, 0.0f, length);
+    }
 }
