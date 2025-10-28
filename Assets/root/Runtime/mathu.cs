@@ -73,9 +73,9 @@ public static class mathu
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float lerpangle(float a, float b, float t)
     {
-        var num = repeat(b - a, 360f);
-        if (num > 180.0f)
-            num -= 360f;
+        var num = repeat(b - a, math.PI);
+        if (num > math.PIHALF)
+            num -= math.PI;
         return a + num * math.clamp(t,0,1);
     }
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
