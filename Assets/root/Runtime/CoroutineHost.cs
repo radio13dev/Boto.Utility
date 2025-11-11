@@ -178,7 +178,7 @@ public struct ExclusiveCoroutine
             var editorCo = EditorCoroutineInjected?.Invoke(coroutine, host);
             if (editorCo != null)
             {
-                EditorCoroutineUtility.StopCoroutine(coEditor);
+                if (coEditor != null) EditorCoroutineUtility.StopCoroutine(coEditor);
                 coEditor = editorCo;
                 return;
             }
