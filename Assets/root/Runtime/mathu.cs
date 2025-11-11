@@ -98,9 +98,21 @@ public static class mathu
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float2 lerprepeat(float2 a, float2 b, float t, float2 length)
+    {
+        return new float2(lerprepeat(a.x,b.x,t,length.x), lerprepeat(a.y,b.y,t,length.y));
+    }
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float repeat(float t, float length)
     {
         return math.clamp(t - math.floor(t / length) * length, 0.0f, length);
+    }
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float2 repeat(float2 t, float2 length)
+    {
+        return new float2(repeat(t.x, length.x), repeat(t.y, length.y));
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
