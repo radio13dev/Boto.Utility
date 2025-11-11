@@ -102,4 +102,22 @@ public static class mathu
     {
         return math.clamp(t - math.floor(t / length) * length, 0.0f, length);
     }
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float deltaangle(float current, float target)
+    {
+      float num = Mathf.Repeat(target - current, math.PI2);
+      if (num > math.PI)
+        num -= math.PI2;
+      return num;
+    }
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float deltarepeat(float current, float target, float length)
+    {
+      float num = Mathf.Repeat(target - current, length*2);
+      if (num > length)
+        num -= length*2;
+      return num;
+    }
 }
