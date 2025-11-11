@@ -10,8 +10,7 @@ namespace Editor.Scripts
         {
             ExclusiveCoroutine.EditorCoroutineInjected += (c, h) =>
             {
-                EditorCoroutineUtility.StartCoroutine(c, h);
-                return true;
+                return EditorCoroutineUtility.StartCoroutine(c, h);
             };
         }
     }

@@ -6,7 +6,8 @@
         "AYellowpaper.SerializedCollections",
         "Unity.InputSystem",
         "ALINE",
-        "Unity.Transforms"
+        "Unity.Transforms",
+        "Unity.EditorCoroutines.Editor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

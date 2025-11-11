@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+#if UNITY_EDITOR
+using Unity.EditorCoroutines.Editor;
+#endif
 
 public class CoroutineHost : MonoBehaviour
 {
@@ -144,7 +147,7 @@ public class CoroutineHost : MonoBehaviour
         if (!Application.isPlaying && ExclusiveCoroutine.EditorCoroutineInjected?.Invoke(DelayedAction(() =>
             {
                 if (!Application.isPlaying) action();
-            }), host) == true)
+            }), host) != null)
         {
             return;
         }
@@ -163,15 +166,22 @@ public struct ExclusiveCoroutine
     Coroutine co;
 
 #if UNITY_EDITOR
-    public static Func<IEnumerator, MonoBehaviour, bool> EditorCoroutineInjected;
+    public static Func<IEnumerator, MonoBehaviour, EditorCoroutine> EditorCoroutineInjected;
+    EditorCoroutine coEditor;
 #endif
 
     public void StartCoroutine(MonoBehaviour host, IEnumerator coroutine)
     {
 #if UNITY_EDITOR
-        if (!Application.isPlaying && EditorCoroutineInjected?.Invoke(coroutine, host) == true)
+        if (!Application.isPlaying)
         {
-            return;
+            var editorCo = EditorCoroutineInjected?.Invoke(coroutine, host);
+            if (editorCo != null)
+            {
+                EditorCoroutineUtility.StopCoroutine(coEditor);
+                coEditor = editorCo;
+                return;
+            }
         }
 #endif
 
