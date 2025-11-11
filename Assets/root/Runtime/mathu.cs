@@ -132,4 +132,10 @@ public static class mathu
         num -= length*2;
       return num;
     }
+    [Pure]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float2 deltarepeat(float2 current, float2 target, float2 length)
+    {
+        return new float2(deltarepeat(current.x, target.x, length.x), deltarepeat(current.y, target.y, length.y));
+    }
 }
