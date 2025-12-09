@@ -31,6 +31,8 @@ public static class ease
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static float cubic_inout(float progress) => cubic(progress);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static float cubic(float progress)
     {
         return progress < 0.5 ? 4 * progress * progress * progress : 1 - math.pow(-2 * progress + 2, 3) / 2;
