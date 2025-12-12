@@ -10,6 +10,8 @@ using UnityEditor;
 [Serializable]
 public struct TransitionPoint : IEquatable<TransitionPoint>
 {
+    public const float k_AnimTransitionTime = 0.2f;
+
     [HideInInspector] [SerializeField] public Vector2 _anchorMin;
     [HideInInspector] [SerializeField] public Vector2 _anchorMax;
     [HideInInspector] [SerializeField] public Vector2 _anchoredPosition;
