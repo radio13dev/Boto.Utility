@@ -30,7 +30,7 @@ public struct TransitionPoint : IEquatable<TransitionPoint>
         _localScale = t.localScale;
     }
 
-    private void Apply(RectTransform target)
+    public void Apply(RectTransform target)
     {
         target.anchorMin = _anchorMin;
         target.anchorMax = _anchorMax;
@@ -60,6 +60,12 @@ public struct TransitionPoint : IEquatable<TransitionPoint>
 
     public IEnumerator Lerp(RectTransform from, float duration, ease.Mode easeMode = ease.Mode.elastic_inout2)
     {
+        if (duration <= 0)
+        {
+            Apply(from);
+            yield break;
+        }
+
         TransitionPoint start = new();
         start.Save(from);
 
