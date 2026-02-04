@@ -1,33 +1,47 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
-using Unity.Mathematics;
+using Deterministic.FixedPoint;
 using UnityEngine;
+using Unity.Mathematics.Fixed;
 
 public static partial class mathu
 {
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float MoveTowards(float current, float target, float maxDelta)
+    public static fp MoveTowards(fp current, fp target, fp maxDelta)
     {
-        return math.abs((double)target - (double)current) <= maxDelta ? target : current + math.sign(target - current) * maxDelta;
+        if (target-current > maxDelta) return current + maxDelta;
+        return target;
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float3 MoveTowards(float3 current, float3 target, float maxDelta)
+    public static float3 MoveTowards(float3 current, float3 target, fp maxDelta)
     {
-        return math.distancesq(target,current) <= maxDelta*maxDelta ? target : current + math.normalize(target - current) * maxDelta;
+        var v = target - current;
+        var sqrMagnitude = math.lengthsq(v);
+        if (math.all(v == float3.zero) || (maxDelta >= fp._0 && sqrMagnitude <= maxDelta * maxDelta))
+            return target;
+
+        var magnitude = fixmath.Sqrt(sqrMagnitude);
+        return current + v / magnitude * maxDelta;
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float2 MoveTowards(float2 current, float2 target, float maxDelta)
+    public static float2 MoveTowards(float2 current, float2 target, fp maxDelta)
     {
-        return math.distancesq(target,current) <= maxDelta*maxDelta ? target : current + math.normalize(target - current) * maxDelta;
+        var v = target - current;
+        var sqrMagnitude = math.lengthsq(v);
+        if (math.all(v == float2.zero) || (maxDelta >= fp._0 && sqrMagnitude <= maxDelta * maxDelta))
+            return target;
+
+        var magnitude = fixmath.Sqrt(sqrMagnitude);
+        return current + v / magnitude * maxDelta;
     }
     
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static bool Contains(this float2 range, float v)
+    public static bool Contains(this float2 range, fp v)
     {
         return range.x < v && v <= range.y;
     }
@@ -39,17 +53,17 @@ public static partial class mathu
         n = math.normalizesafe(n);
 
         // Frisvad's method for building an orthonormal basis
-        if (n.z < -0.9999999f) // Handle edge case
+        if (n.z < -fp._0_999) // Handle edge case
         {
             return new float3(0, -1, 0);
         }
 
-        float a = 1.0f / (1.0f + n.z);
-        float b = -n.x * n.y * a;
+        var a = 1 / (1 + n.z);
+        var b = -n.x * n.y * a;
 
         // x-axis of the basis (perpendicular to n)
         float3 tangent = new float3(
-            1.0f - n.x * n.x * a,
+            1 - n.x * n.x * a,
             b,
             -n.x
         );
@@ -58,7 +72,7 @@ public static partial class mathu
     
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static int modabs(int x, int m)
+    public static fp modabs(fp x, fp m)
     {
         var r = x % m;
         if (r >= 0) return r;
@@ -66,30 +80,16 @@ public static partial class mathu
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float modabs(float x, float m)
+    public static fp lerpangle(fp a, fp b, fp t)
     {
-        var r = x % m;
-        if (r >= 0) return r;
-        return r + m;
-    }
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static Vector2Int modabs(Vector2Int x, Vector2Int m)
-    {
-        return new Vector2Int((int)modabs(x.x,m.x), (int)modabs(x.y,m.y));
-    }
-    [Pure]
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float lerpangle(float a, float b, float t)
-    {
-        var num = repeat(b - a, math.PI);
-        if (num > math.PIHALF)
-            num -= math.PI;
+        var num = repeat(b - a, fp.pi);
+        if (num > fp.pi_half)
+            num -= fp.pi;
         return a + num * math.clamp(t,0,1);
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float lerprepeat(float a, float b, float t, float length)
+    public static fp lerprepeat(fp a, fp b, fp t, fp length)
     {
         var num = repeat(b - a, length*2);
         if (num > length)
@@ -98,15 +98,15 @@ public static partial class mathu
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float2 lerprepeat(float2 a, float2 b, float t, float2 length)
+    public static float2 lerprepeat(float2 a, float2 b, fp t, float2 length)
     {
         return new float2(lerprepeat(a.x,b.x,t,length.x), lerprepeat(a.y,b.y,t,length.y));
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float repeat(float t, float length)
+    public static fp repeat(fp t, fp length)
     {
-        return math.clamp(t - math.floor(t / length) * length, 0.0f, length);
+        return math.clamp(t - math.floor(t / length) * length, 0, length);
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -116,18 +116,18 @@ public static partial class mathu
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float deltaangle(float current, float target)
+    public static fp deltaangle(fp current, fp target)
     {
-      float num = Mathf.Repeat(target - current, math.PI2);
-      if (num > math.PI)
-        num -= math.PI2;
+      fp num = repeat(target - current, fp.pi2);
+      if (num > fp.pi)
+        num -= fp.pi2;
       return num;
     }
     [Pure]
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public static float deltarepeat(float current, float target, float length)
+    public static fp deltarepeat(fp current, fp target, fp length)
     {
-      float num = Mathf.Repeat(target - current, length*2);
+      fp num = repeat(target - current, length*2);
       if (num > length)
         num -= length*2;
       return num;

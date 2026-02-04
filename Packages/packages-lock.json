@@ -14,6 +14,13 @@
         "com.unity.ugui": "1.0.0"
       }
     },
+    "com.boto.mathematics.fixed": {
+      "version": "https://github.com/radio13dev/Unity.Mathematics.Fork.git?path=/Assets/root/",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "ae49e8618d9559bf966b6e665dc8ae04d50eefad"
+    },
     "com.unity.burst": {
       "version": "1.8.25",
       "depth": 1,

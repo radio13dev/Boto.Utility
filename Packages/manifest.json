@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.boto.mathematics.fixed": "https://github.com/radio13dev/Unity.Mathematics.Fork.git?path=/Assets/root/",
     "com.unity.editorcoroutines": "1.0.1",
     "com.unity.entities": "1.4.3",
     "com.unity.ide.rider": "3.0.38",

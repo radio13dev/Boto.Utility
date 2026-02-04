@@ -15,7 +15,8 @@
 		"com.unity.mathematics": "1.3.0",
 		"com.unity.inputsystem": "1.14.0",
 		"com.arongranberg.aline": "1.7.8",
-		"com.unity.entities": "1.4.0"
+		"com.unity.entities": "1.4.0",
+		"com.boto.mathematics.fixed": "https://github.com/radio13dev/Unity.Mathematics.Fork.git?path=/Assets/root/"
 	},
 	"samples": [
 		{
