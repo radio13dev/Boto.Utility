@@ -19,7 +19,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "ae49e8618d9559bf966b6e665dc8ae04d50eefad"
+      "hash": "a9032b342b078f318848831cd355af4961e14dd1"
     },
     "com.unity.burst": {
       "version": "1.8.25",

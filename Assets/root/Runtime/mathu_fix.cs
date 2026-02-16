@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
-using Deterministic.FixedPoint;
 using UnityEngine;
 using Unity.Mathematics.Fixed;
 
