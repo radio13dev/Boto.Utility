@@ -1,18 +1,18 @@
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
-using Unity.Mathematics;
+using Unity.Mathematics.Fixed;
 using UnityEngine;
 
 public static partial class VectorUtilities
 {
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public static float2 RotateVector2D(float2 vector, float radians)
+    public static float2 RotateVector2D(float2 vector, fp radians)
     {
-        float sin = Mathf.Sin(radians);
-        float cos = Mathf.Cos(radians);
-        float tx = vector.x;
-        float ty = vector.y;
+        var sin = math.sin(radians);
+        var cos = math.cos(radians);
+        var tx = vector.x;
+        var ty = vector.y;
         vector.x = (cos * tx) - (sin * ty);
         vector.y = (sin * tx) + (cos * ty);
         return vector;
@@ -46,7 +46,7 @@ public static partial class VectorUtilities
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
-    public static Vector3 xy0(this float2 p) => new Vector3(p.x, p.y, 0);
+    public static float3 xy0(this float2 p) => new float3(p.x, p.y, 0);
     
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     [Pure]
